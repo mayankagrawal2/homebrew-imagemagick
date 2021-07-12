@@ -47,12 +47,12 @@ class Imagemagick < Formula
              "--with-modules",
              "--disable-openmp"]
 
-    args << "--disable-opencl" if build.include? 'disable-opencl'
+    args << "--disable-opencl" if build.send(:include?,'disable-opencl')
     args << "--without-gslib" if build.without? 'ghostscript'
     args << "--without-perl" if build.without? 'perl'
     args << "--with-gs-font-dir=#{HOMEBREW_PREFIX}/share/ghostscript/fonts" if build.without? 'ghostscript'
     args << "--without-magick-plus-plus" if build.without? 'magick-plus-plus'
-    args << "--enable-hdri=yes" if build.include? 'enable-hdri'
+    args << "--enable-hdri=yes" if build.send(:include?, 'enable-hdri')
 
     if build.with? 'quantum-depth-32'
       quantum_depth = 32
@@ -67,7 +67,7 @@ class Imagemagick < Formula
     args << "--without-x" if build.without? 'x11'
     args << "--with-fontconfig=yes" if build.with? 'fontconfig'
     args << "--with-freetype=yes" if build.with? 'freetype'
-    args << "--with-webp=yes" if build.include? 'webp'
+    args << "--with-webp=yes" if build.send(:include?, 'webp')
 
     # versioned stuff in main tree is pointless for us
     inreplace 'configure', '${PACKAGE_NAME}-${PACKAGE_VERSION}', '${PACKAGE_NAME}'
