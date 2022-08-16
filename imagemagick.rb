@@ -3,8 +3,8 @@ require 'formula'
 class Imagemagick < Formula
   homepage 'https://legacy.imagemagick.org'
 
-  url 'https://download.imagemagick.org/ImageMagick/download/releases/ImageMagick-6.8.9-10.tar.xz'
-  sha256 'cac5dda165ab603a2f56110daf41811233d93c6fdd84e94a8430e057041d8e68'
+  url 'https://imagemagick.org/archive/releases/ImageMagick-6.9.8-10.tar.xz'
+  sha256 '8fc268f6e1bc514b41620e0f3f6c5dd33bfc5169db679e9a5c0455c6edd11810'
 
   option 'with-quantum-depth-8', 'Compile with a quantum depth of 8 bit'
   option 'with-quantum-depth-16', 'Compile with a quantum depth of 16 bit'
@@ -76,15 +76,6 @@ class Imagemagick < Formula
   end
 
   def caveats
-    s = <<-EOS.undent
-      For full Perl support you must install the Image::Magick module from the CPAN.
-        https://metacpan.org/module/Image::Magick
-      The version of the Perl module and ImageMagick itself need to be kept in sync.
-      If you upgrade one, you must upgrade the other.
-      For this version of ImageMagick you should install
-      version #{version} of the Image::Magick Perl module.
-    EOS
-    s if build.with? 'perl'
   end
 
   test do
